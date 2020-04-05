@@ -1,18 +1,38 @@
-`ifndef "BITSTREAM_SEQUENCE"
-`define "BITSTREAM_SEQUENCE"
+`ifndef "BITSTREAM"
+`define "BITSTREAM"
 
-class bitstream extends uvm_sequence#(prog_seq_item);
+  
+// Hardcoding bitstream
+class bitstream extends bs_base_seq;
    `uvm_object_utils(bitstream)
-   `uvm_declare_p_sequencer(bs_sequencer)
    
+   /**
+    * Default constructor.
+    */
+   extern function new(string name="stimuli");
+   /**
+    * Sequence body
+    */
+   extern virtual task body();
+   /**
+    * Sequence to reduce hardcoding
+    */
+   extern virtual task double_75(int z)	;
+   extern virtual task double()		;
+   extern virtual task simple()		;
+   extern virtual task alternate()	;
+   extern virtual task low(int x)	;
+endclass : bitstream
    
-   function new(string name = "fpga_prog");
-      super.new(name);
-   endfunction // new
+function bitstream::new(string name = "fpga_bs");
 
-   virtual task body();
-     `uvm_info("Programing", $sformatf("Starting programming fpga"), UVM_LOW);
-      low(215-185); // c'était 215 - 184 je réduis de 1 après observation sur les waveform
+      super.new(name);
+
+endfunction // new
+
+task bitstream::body();
+     `uvm_info("Programing", $sformatf("Starting bsramming fpga"), UVM_LOW);
+      low(215-185);
       simple();
       low(1);
       double();
@@ -20,7 +40,7 @@ class bitstream extends uvm_sequence#(prog_seq_item);
       simple();
       low(554-551);
       double();
-      low(559-557); // un low de moins parce que y'en a un dans alternate
+      low(559-557);
       alternate();
       low(634-592);
       double_75(9);
@@ -31,7 +51,6 @@ class bitstream extends uvm_sequence#(prog_seq_item);
       simple();
       low(2332-1589);
       double_75(10);
-      // we're at 3008
       low(4145-3009);
       double_75(10); 
       low(5912-4822);
@@ -57,16 +76,15 @@ class bitstream extends uvm_sequence#(prog_seq_item);
       low(8641-8397);
       double();
       double();
-// add config done
  
       `uvm_do_with(req,{req.config_done == 1'b1;
 			req.ccff_head   == 1'b1;})
-   endtask // body
+endtask // body
    
 
 
    // Sequences to reduce hardcoding
-   virtual task double_75(int z);
+task bitstream::double_75(int z);
 
 	 `uvm_do_with(req,{req.ccff_head   == 1'b1;
 	                   req.config_done == 1'b0;})
@@ -86,21 +104,21 @@ class bitstream extends uvm_sequence#(prog_seq_item);
 
        end
       
-   endtask // double_75
+endtask // double_75
 
-   virtual task double();
+task bistream::double();
 	 `uvm_do_with(req,{req.ccff_head   == 1'b1;
 	                   req.config_done == 1'b0;})
 	 `uvm_do_with(req,{req.ccff_head   == 1'b1;
 	                   req.config_done == 1'b0;})
-   endtask // double
+endtask // double
 
-   virtual task simple();
+task bitstream::simple();
 	 `uvm_do_with(req,{req.ccff_head   == 1'b1;
 	                   req.config_done == 1'b0;})
-   endtask // simple
+endtask // simple
 
-   virtual task alternate();
+task bitstream::alternate();
        repeat(17)
        begin
 	 `uvm_do_with(req,{req.ccff_head   == 1'b0;
@@ -108,18 +126,17 @@ class bitstream extends uvm_sequence#(prog_seq_item);
       	 `uvm_do_with(req,{req.ccff_head   == 1'b1;
 	                   req.config_done == 1'b0;})
        end
-   endtask // alternate
+endtask // alternate
    
       
-   virtual task low(int x);
+task bitstream::low(int x);
      repeat(x)
        begin
 	 `uvm_do_with(req,{req.ccff_head   == 1'b0;
 	                   req.config_done == 1'b0;})
        end
-   endtask // low
+endtask // low
    
-endclass // init
 
 
-`endif
+`endif // BITSTREAM
