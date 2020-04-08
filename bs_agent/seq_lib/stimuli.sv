@@ -1,6 +1,8 @@
 `ifndef "STIMULI"
 `define "STIMULI"
 
+// To be deleted, no longer used
+
 class stimuli extends bs_base_seq;
 
    `uvm_object_utils(stimuli)
@@ -28,11 +30,11 @@ task stimuli::body();
      `uvm_info("Stimuli", $sformatf("stimuli sequence started"), UVM_LOW);     
      repeat(100)
      begin
-			`uvm_create(req)
-			req.unused.constraint_mode(0); // Overriding constraints
-			start_item(req);
-			assert(req.randomize() with  {req.ccff_head == 1'b1; req.config_done == 1'b1;});
-			finish_item(req);
+//			`uvm_create(req)
+//			req.unused.constraint_mode(0); // Overriding constraints
+//			start_item(req);
+//			assert(req.randomize() with  {req.ccff_head == 1'b1; req.config_done == 1'b1;});
+//			finish_item(req);
 
      end
 

@@ -86,7 +86,6 @@ task bs_driver::run_phase(uvm_phase phase);
 		begin
 		 m_bs_cntxt.vif.ccff_head 			 = 0;
 		 m_bs_cntxt.vif.config_done    			 = 0; 
-		 m_bs_cntxt.vif.gfpga_pad_GPIO_IN_drv[1:7]       = 0;
 		end
 	 NOVALUE:
 	  	 m_bs_cntxt.vif.ccff_head		         = 0;
@@ -104,8 +103,6 @@ task bs_driver::drive();
 	@(negedge m_bs_cntxt.vif.clk_uvm);
      	m_bs_cntxt.vif.ccff_head   = req.ccff_head;
     	m_bs_cntxt.vif.config_done = req.config_done;
-    	m_bs_cntxt.vif.DRIVER.gfpga_pad_GPIO_IN_drv[1:7] = req.gfpga_pad_GPIO_IN_drv[1:7];
-     	req.gfpga_pad_GPIO_IN_drv[0] = m_bs_cntxt.vif.DRIVER.gfpga_pad_GPIO_IN_drv[0];
 	$display("-----------------------------------------");
 endtask : drive
     

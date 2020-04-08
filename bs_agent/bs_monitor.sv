@@ -19,9 +19,6 @@
 `define BS_MONITOR
 
 class bs_monitor extends uvm_monitor;
-
-   uvm_analysis_port #(bs_seq_item) bs_collected_port;
-   bs_seq_item trans_collected;
    
    bs_cfg    m_bs_cfg;
    bs_cntxt  m_bs_cntxt;
@@ -51,8 +48,6 @@ endclass : bs_monitor
 function bs_monitor::new(string name="bs_monitor",uvm_component parent);
  
       	super.new(name,parent);
-      	trans_collected =new();
-      	bs_collected_port =new("bs_collected_port",this);
        
 endfunction 
 
@@ -72,11 +67,7 @@ function void bs_monitor::build_phase(uvm_phase phase);
 endfunction: build_phase
 
 task bs_monitor::run_phase(uvm_phase phase);
-      	forever begin
-	   @(posedge m_bs_cntxt.vif.clk);
-	   trans_collected.gfpga_pad_GPIO = m_bs_cntxt.vif.gfpga_pad_GPIO;
-	   bs_collected_port.write(trans_collected);
-      	end
+
 endtask: run_phase
    
 `endif // BS_MONITOR

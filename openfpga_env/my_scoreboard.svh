@@ -8,11 +8,12 @@
 class my_scoreboard extends uvm_scoreboard;
 
    `uvm_component_utils(my_scoreboard)
-   uvm_analysis_imp_dut#(bs_seq_item,my_scoreboard)		bs_collected_export;
-   uvm_analysis_imp_ref#(clknrst_seq_item,my_scoreboard)	item_collected_export;
-   
-   clknrst_seq_item  						pkt_ref_qu[$];
-   bs_seq_item       						pkt_dut_qu[$];
+   uvm_analysis_imp_dut#(stimuli_seq_item,my_scoreboard)	dut_collected_export; // Port connected to DUT transaction
+   uvm_analysis_imp_ref#(stimuli_seq_item,my_scoreboard)	ref_collected_export; // Port connected to Reference model transaction
+
+
+   stimuli_seq_item       					pkt_dut_qu[$]; // Packet queue for transaction coming from DUT
+   stimuli_seq_item						pkt_ref_qu[$]; // Packet queue for transaction coming from Reference model
 
    /**
     * Default constructor.
@@ -26,11 +27,11 @@ class my_scoreboard extends uvm_scoreboard;
   /**
     * Receive DUT Pkt
     */
-   extern virtual function void write_dut(bs_seq_item trans_collected);
+   extern virtual function void write_dut(stimuli_seq_item trans_collected);
    /**
     * Receive Ref Pkt
     */
-   extern virtual function void write_ref(clknrst_seq_item trans_collected);
+   extern virtual function void write_ref(stimuli_seq_item trans_collected);
    /**
     * Compare DUT Output to reference model
     */
@@ -49,23 +50,24 @@ endfunction : new
 function void my_scoreboard::build_phase(uvm_phase phase);
 
       super.build_phase(phase);
-      item_collected_export = new("item_collected_export",this);
-      bs_collected_export = new("bs_collected_export",this);
+      dut_collected_export = new("bs_collected_export",this);
+      ref_collected_export = new("ref_export",this);
       
 endfunction: build_phase
 
 
-function void my_scoreboard::write_dut(bs_seq_item trans_collected); // Print the top item in the queue
+function void my_scoreboard::write_dut(stimuli_seq_item trans_collected); // Print the top item in the queue
 
-    `uvm_info(get_type_name(),$sformatf(" Value of sequence item in SCOREBOARD \n"),UVM_LOW)
+    `uvm_info(get_type_name(),$sformatf(" Value of sequence item in SCOREBOARD from dut \n", i),UVM_LOW)
     trans_collected.print();
     pkt_dut_qu.push_back(trans_collected);
 
 endfunction:write_dut
   
-function void my_scoreboard::write_ref(clknrst_seq_item trans_collected); // Print the top item in the queue
 
-    `uvm_info(get_type_name(),$sformatf(" Value of sequence item in SCOREBOARD \n"),UVM_LOW)
+function void my_scoreboard::write_ref(stimuli_seq_item trans_collected); // Print the top item in the queue
+
+    `uvm_info(get_type_name(),$sformatf(" Value of sequence item in SCOREBOARD from ref \n", j),UVM_LOW)
     trans_collected.print();
 
     pkt_ref_qu.push_back(trans_collected);
@@ -75,12 +77,16 @@ endfunction:write_ref
 task my_scoreboard::run_phase (uvm_phase phase);
 
     // Handle to transactions
-    clknrst_seq_item    ref_seq;
-    bs_seq_item 	dut_seq;
+    stimuli_seq_item 	dut_seq;
+    stimuli_seq_item	ref_seq;
     forever begin
-      wait(pkt_dut_qu.size()>0 && pkt_ref_qu.size()>0); // If the queue isn't empty
+
+      wait(pkt_dut_qu.size()>0 && pkt_ref_qu.size()>0);
+ // If the queue isn't empty
       dut_seq=pkt_dut_qu.pop_front(); 			    // Pick the top transaction coming out of our DUT
       ref_seq=pkt_ref_qu.pop_front(); 		    // Pick the top transaction coming out of the reference model
+	ref_seq.print();
+	dut_seq.print();
       if(dut_seq.gfpga_pad_GPIO[0]==ref_seq.OUT)
 	begin
 

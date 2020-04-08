@@ -1,0 +1,303 @@
+/research/ece/lnis/USERS/DARPA_ERI/GF14nm_chip_2019/2020_March_Final_rush/2x2_homogeneous_FPGA/SRC/sub_module/sub_module.v {1 {vlog -work openfpga -vopt -stats=none /research/ece/lnis/USERS/DARPA_ERI/GF14nm_chip_2019/2020_March_Final_rush/2x2_homogeneous_FPGA/SRC/sub_module/sub_module.v
+QuestaSim-64 vlog 2019.4 Compiler 2019.10 Oct 15 2019
+-- Compiling module const0
+-- Compiling module const1
+-- Compiling module mux_tree_like_tapbuf_size34
+-- Compiling module mux_tree_like_tapbuf_size3
+-- Compiling module mux_tree_like_tapbuf_size10
+-- Compiling module mux_tree_like_tapbuf_size2
+-- Compiling module mux_tree_like_tapbuf_size9
+-- Compiling module mux_tree_like_tapbuf_size8
+-- Compiling module mux_tree_like_tapbuf_size4
+-- Compiling module mux_tree_like_tapbuf_size14
+-- Compiling module mux_tree_like_tapbuf_size5
+-- Compiling module mux_tree_like_tapbuf_size13
+-- Compiling module mux_tree_like_tapbuf_size12
+-- Compiling module mux_tree_like_tapbuf_size7
+-- Compiling module mux_tree_like_size40
+-- Compiling module mux_tree_like_size22
+-- Compiling module frac_lut6_mux
+-- Compiling module frac_lut6
+-- Compiling module direct_interc
+-- Compiling module mux_tree_like_tapbuf_size34_mem
+-- Compiling module mux_tree_like_tapbuf_size3_mem
+-- Compiling module mux_tree_like_tapbuf_size10_mem
+-- Compiling module mux_tree_like_tapbuf_size2_mem
+-- Compiling module mux_tree_like_tapbuf_size9_mem
+-- Compiling module mux_tree_like_tapbuf_size8_mem
+-- Compiling module mux_tree_like_tapbuf_size4_mem
+-- Compiling module mux_tree_like_tapbuf_size14_mem
+-- Compiling module mux_tree_like_tapbuf_size5_mem
+-- Compiling module mux_tree_like_tapbuf_size13_mem
+-- Compiling module mux_tree_like_tapbuf_size12_mem
+-- Compiling module mux_tree_like_tapbuf_size7_mem
+-- Compiling module mux_tree_like_size40_mem
+-- Compiling module mux_tree_like_size22_mem
+-- Compiling module frac_lut6_CCFFX1_mem
+-- Compiling module GPIO_CCFFX1_mem
+
+Top level modules:
+	const0
+	mux_tree_like_tapbuf_size34
+	mux_tree_like_tapbuf_size3
+	mux_tree_like_tapbuf_size10
+	mux_tree_like_tapbuf_size2
+	mux_tree_like_tapbuf_size9
+	mux_tree_like_tapbuf_size8
+	mux_tree_like_tapbuf_size4
+	mux_tree_like_tapbuf_size14
+	mux_tree_like_tapbuf_size5
+	mux_tree_like_tapbuf_size13
+	mux_tree_like_tapbuf_size12
+	mux_tree_like_tapbuf_size7
+	mux_tree_like_size40
+	mux_tree_like_size22
+	frac_lut6
+	direct_interc
+	mux_tree_like_tapbuf_size34_mem
+	mux_tree_like_tapbuf_size3_mem
+	mux_tree_like_tapbuf_size10_mem
+	mux_tree_like_tapbuf_size2_mem
+	mux_tree_like_tapbuf_size9_mem
+	mux_tree_like_tapbuf_size8_mem
+	mux_tree_like_tapbuf_size4_mem
+	mux_tree_like_tapbuf_size14_mem
+	mux_tree_like_tapbuf_size5_mem
+	mux_tree_like_tapbuf_size13_mem
+	mux_tree_like_tapbuf_size12_mem
+	mux_tree_like_tapbuf_size7_mem
+	mux_tree_like_size40_mem
+	mux_tree_like_size22_mem
+	frac_lut6_CCFFX1_mem
+	GPIO_CCFFX1_mem
+
+} {} {}} /research/ece/lnis/Share/TMP_Samy/openfpga_tb/uvm_tb_2x2_fpga/bs_agent/bs_pkg.sv {2 {vlog -work openfpga -vopt -sv -stats=none /research/ece/lnis/Share/TMP_Samy/openfpga_tb/uvm_tb_2x2_fpga/bs_agent/bs_pkg.sv
+QuestaSim-64 vlog 2019.4 Compiler 2019.10 Oct 15 2019
+** Note: (vlog-2286) /research/ece/lnis/Share/TMP_Samy/openfpga_tb/uvm_tb_2x2_fpga/bs_agent/bs_pkg.sv(21): Using implicit +incdir+/uusoc/facility/cad_tools/Mentor/lnis_tools/modelsim/questasim/uvm-1.2/../verilog_src/uvm-1.2/src from import uvm_pkg
+-- Compiling interface bs_if
+-- Compiling package bs_pkg
+-- Importing package mtiUvm.uvm_pkg (uvm-1.2 Built-in)
+** Warning: ** while parsing file included at /research/ece/lnis/Share/TMP_Samy/openfpga_tb/uvm_tb_2x2_fpga/bs_agent/bs_pkg.sv(37)
+** at /research/ece/lnis/Share/TMP_Samy/openfpga_tb/uvm_tb_2x2_fpga/bs_agent/bs_sqr.sv(45): (vlog-2217) No default specified for 'parent'.  Default must match the value specified in class at /research/ece/lnis/Share/TMP_Samy/openfpga_tb/uvm_tb_2x2_fpga/bs_agent/bs_sqr.sv(37) for strict LRM compliance.
+** Warning: ** while parsing file included at /research/ece/lnis/Share/TMP_Samy/openfpga_tb/uvm_tb_2x2_fpga/bs_agent/bs_pkg.sv(38)
+** at /research/ece/lnis/Share/TMP_Samy/openfpga_tb/uvm_tb_2x2_fpga/bs_agent/seq_lib/bs_base_seq.sv(19): (vlog-2962) A non-IEEE 1800-2012-compliant identifier was used to define a macro: '"BS_BASE_SEQ"'.
+** Warning: ** while parsing file included at /research/ece/lnis/Share/TMP_Samy/openfpga_tb/uvm_tb_2x2_fpga/bs_agent/bs_pkg.sv(39)
+** at /research/ece/lnis/Share/TMP_Samy/openfpga_tb/uvm_tb_2x2_fpga/bs_agent/seq_lib/bitstream.sv(2): (vlog-2962) A non-IEEE 1800-2012-compliant identifier was used to define a macro: '"BITSTREAM"'.
+** Warning: ** while parsing file included at /research/ece/lnis/Share/TMP_Samy/openfpga_tb/uvm_tb_2x2_fpga/bs_agent/bs_pkg.sv(40)
+** at /research/ece/lnis/Share/TMP_Samy/openfpga_tb/uvm_tb_2x2_fpga/bs_agent/seq_lib/stimuli.sv(2): (vlog-2962) A non-IEEE 1800-2012-compliant identifier was used to define a macro: '"STIMULI"'.
+** Warning: ** while parsing file included at /research/ece/lnis/Share/TMP_Samy/openfpga_tb/uvm_tb_2x2_fpga/bs_agent/bs_pkg.sv(42)
+** at /research/ece/lnis/Share/TMP_Samy/openfpga_tb/uvm_tb_2x2_fpga/bs_agent/bs_driver.sv(60): (vlog-2217) No default specified for 'parent'.  Default must match the value specified in class at /research/ece/lnis/Share/TMP_Samy/openfpga_tb/uvm_tb_2x2_fpga/bs_agent/bs_driver.sv(40) for strict LRM compliance.
+** Warning: ** while parsing file included at /research/ece/lnis/Share/TMP_Samy/openfpga_tb/uvm_tb_2x2_fpga/bs_agent/bs_pkg.sv(43)
+** at /research/ece/lnis/Share/TMP_Samy/openfpga_tb/uvm_tb_2x2_fpga/bs_agent/bs_monitor.sv(51): (vlog-2217) No default specified for 'parent'.  Default must match the value specified in class at /research/ece/lnis/Share/TMP_Samy/openfpga_tb/uvm_tb_2x2_fpga/bs_agent/bs_monitor.sv(37) for strict LRM compliance.
+** Warning: ** while parsing file included at /research/ece/lnis/Share/TMP_Samy/openfpga_tb/uvm_tb_2x2_fpga/bs_agent/bs_pkg.sv(44)
+** at /research/ece/lnis/Share/TMP_Samy/openfpga_tb/uvm_tb_2x2_fpga/bs_agent/bs_agent.sv(74): (vlog-2217) No default specified for 'parent'.  Default must match the value specified in class at /research/ece/lnis/Share/TMP_Samy/openfpga_tb/uvm_tb_2x2_fpga/bs_agent/bs_agent.sv(39) for strict LRM compliance.
+
+Top level modules:
+	--none--
+
+} {} {}} /research/ece/lnis/USERS/DARPA_ERI/GF14nm_chip_2019/2020_March_Final_rush/2x2_homogeneous_FPGA/SRC/routing/routing.v {1 {vlog -work openfpga -vopt -stats=none /research/ece/lnis/USERS/DARPA_ERI/GF14nm_chip_2019/2020_March_Final_rush/2x2_homogeneous_FPGA/SRC/routing/routing.v
+QuestaSim-64 vlog 2019.4 Compiler 2019.10 Oct 15 2019
+-- Compiling module sb_0__0_
+-- Compiling module sb_0__1_
+-- Compiling module sb_0__2_
+-- Compiling module sb_1__0_
+-- Compiling module sb_1__1_
+-- Compiling module sb_1__2_
+-- Compiling module sb_2__0_
+-- Compiling module sb_2__1_
+-- Compiling module sb_2__2_
+-- Compiling module cbx_1__0_
+-- Compiling module cbx_1__1_
+-- Compiling module cbx_1__2_
+-- Compiling module cby_0__1_
+-- Compiling module cby_1__1_
+-- Compiling module cby_2__1_
+
+Top level modules:
+	sb_0__0_
+	sb_0__1_
+	sb_0__2_
+	sb_1__0_
+	sb_1__1_
+	sb_1__2_
+	sb_2__0_
+	sb_2__1_
+	sb_2__2_
+	cbx_1__0_
+	cbx_1__1_
+	cbx_1__2_
+	cby_0__1_
+	cby_1__1_
+	cby_2__1_
+
+} {} {}} /research/ece/lnis/Share/TMP_Samy/openfpga_tb/uvm_tb_2x2_fpga/openfpga_env/openfpga_env_pkg.sv {1 {vlog -work openfpga -vopt -sv -stats=none /research/ece/lnis/Share/TMP_Samy/openfpga_tb/uvm_tb_2x2_fpga/openfpga_env/openfpga_env_pkg.sv
+QuestaSim-64 vlog 2019.4 Compiler 2019.10 Oct 15 2019
+** Note: (vlog-2286) /research/ece/lnis/Share/TMP_Samy/openfpga_tb/uvm_tb_2x2_fpga/openfpga_env/openfpga_env_pkg.sv(22): Using implicit +incdir+/uusoc/facility/cad_tools/Mentor/lnis_tools/modelsim/questasim/uvm-1.2/../verilog_src/uvm-1.2/src from import uvm_pkg
+-- Compiling package openfpga_env_pkg
+-- Importing package mtiUvm.uvm_pkg (uvm-1.2 Built-in)
+-- Importing package clknrst_pkg
+-- Importing package bs_pkg
+-- Importing package stimuli_pkg
+-- Importing package inv_pkg
+
+Top level modules:
+	--none--
+
+} {} {}} /research/ece/lnis/USERS/DARPA_ERI/GF14nm_chip_2019/2020_March_Final_rush/2x2_homogeneous_FPGA/SRC/lb/logic_blocks.v {1 {vlog -work openfpga -vopt -stats=none /research/ece/lnis/USERS/DARPA_ERI/GF14nm_chip_2019/2020_March_Final_rush/2x2_homogeneous_FPGA/SRC/lb/logic_blocks.v
+QuestaSim-64 vlog 2019.4 Compiler 2019.10 Oct 15 2019
+-- Compiling module grid_top_io_mode_io_phy__iopad
+-- Compiling module grid_top_io_mode_io_
+-- Compiling module grid_io_top
+-- Compiling module grid_right_io_mode_io_phy__iopad
+-- Compiling module grid_right_io_mode_io_
+-- Compiling module grid_io_right
+-- Compiling module grid_bottom_io_mode_io_phy__iopad
+-- Compiling module grid_bottom_io_mode_io_
+-- Compiling module grid_io_bottom
+-- Compiling module grid_left_io_mode_io_phy__iopad
+-- Compiling module grid_left_io_mode_io_
+-- Compiling module grid_io_left
+-- Compiling module grid_clb_mode_clb__fle_mode_fle_phy__frac_logic_mode_frac_logic__frac_lut6
+-- Compiling module grid_clb_mode_clb__fle_mode_fle_phy__frac_logic_mode_frac_logic__adder_phy
+-- Compiling module grid_clb_mode_clb__fle_mode_fle_phy__frac_logic
+-- Compiling module grid_clb_mode_clb__fle_mode_fle_phy__ff_phy
+-- Compiling module grid_clb_mode_clb__fle
+-- Compiling module grid_clb_mode_clb_
+-- Compiling module grid_clb
+
+Top level modules:
+	grid_io_top
+	grid_io_right
+	grid_io_bottom
+	grid_io_left
+	grid_clb
+
+} {} {}} /research/ece/lnis/Share/TMP_Samy/openfpga_tb/uvm_tb_2x2_fpga/openfpga_tb/openfpga_tb_pkg.sv {1 {vlog -work openfpga -vopt -sv -stats=none /research/ece/lnis/Share/TMP_Samy/openfpga_tb/uvm_tb_2x2_fpga/openfpga_tb/openfpga_tb_pkg.sv
+QuestaSim-64 vlog 2019.4 Compiler 2019.10 Oct 15 2019
+** Note: (vlog-2286) /research/ece/lnis/Share/TMP_Samy/openfpga_tb/uvm_tb_2x2_fpga/openfpga_tb/openfpga_tb_pkg.sv(23): Using implicit +incdir+/uusoc/facility/cad_tools/Mentor/lnis_tools/modelsim/questasim/uvm-1.2/../verilog_src/uvm-1.2/src from import uvm_pkg
+-- Compiling package openfpga_tb_pkg
+-- Importing package mtiUvm.uvm_pkg (uvm-1.2 Built-in)
+-- Importing package bs_pkg
+-- Importing package clknrst_pkg
+-- Importing package stimuli_pkg
+-- Importing package openfpga_env_pkg
+-- Importing package inv_pkg
+
+Top level modules:
+	--none--
+
+} {} {}} /research/ece/lnis/USERS/DARPA_ERI/GF14nm_chip_2019/2020_March_Final_rush/2x2_homogeneous_FPGA/SRC/fpga_top_rIO.v {1 {vlog -work openfpga -vopt -stats=none /research/ece/lnis/USERS/DARPA_ERI/GF14nm_chip_2019/2020_March_Final_rush/2x2_homogeneous_FPGA/SRC/fpga_top_rIO.v
+QuestaSim-64 vlog 2019.4 Compiler 2019.10 Oct 15 2019
+-- Compiling module fpga_top
+
+Top level modules:
+	fpga_top
+
+} {} {}} /research/ece/lnis/USERS/DARPA_ERI/GF14nm_chip_2019/std_cell/Verilog/std_cell_extract.v {1 {vlog -work openfpga -vopt -stats=none /research/ece/lnis/USERS/DARPA_ERI/GF14nm_chip_2019/std_cell/Verilog/std_cell_extract.v
+QuestaSim-64 vlog 2019.4 Compiler 2019.10 Oct 15 2019
+-- Compiling module TIEHI_X1N_A9PP84TR_C14
+-- Compiling module TIELO_X1N_A9PP84TR_C14
+-- Compiling module INV_X1N_A9PP84TR_C14
+-- Compiling module INV_X4N_A9PP84TR_C14
+-- Compiling module INV_X3N_A9PP84TR_C14
+-- Compiling module INV_X2N_A9PP84TR_C14
+-- Compiling module BUF_X4N_A9PP84TR_C14
+-- Compiling module BUF_X3N_A9PP84TR_C14
+-- Compiling module BUF_X2N_A9PP84TR_C14
+-- Compiling module BUF_X1N_A9PP84TR_C14
+-- Compiling module MX2_X1N_A9PP84TR_C14
+-- Compiling module OR2_X1N_A9PP84TR_C14
+-- Compiling module DFFRPQ_X1N_A9PP84TR_C14
+-- Compiling module CCFFX1
+-- Compiling module SDFFRPQ_X1N_A9PP84TR_C14
+-- Compiling module ADDF_X1N_A9PP84TR_C14
+-- Compiling module PBIDIR_18_18_NT_DR_V
+-- Compiling module PBIDIR_18_18_NT_DR_H
+-- Compiling module GPIO_V
+-- Compiling module GPIO_H
+-- Compiling module PCORNER_18_18_NT_DR
+-- Compiling module PDVDDTIE_18_18_NT_DR_H
+-- Compiling module PDVDDTIE_18_18_NT_DR_V
+-- Compiling module PDVDD_18_18_NT_DR_H
+-- Compiling module PDVSS_18_18_NT_DR_H
+-- Compiling module PDVDD_18_18_NT_DR_V
+-- Compiling module PDVSS_18_18_NT_DR_V
+-- Compiling module PDCAP10_18_18_NT_DR_H
+-- Compiling module PDCAP10_18_18_NT_DR_V
+-- Compiling module PINCNP_18_18_NT_DR_H
+-- Compiling module PINCNP_18_18_NT_DR_V
+-- Compiling module PVDD_08_08_NT_DR_H
+-- Compiling module PVDD_08_08_NT_DR_V
+-- Compiling module PVSS_08_08_NT_DR_H
+-- Compiling module PVSS_08_08_NT_DR_V
+-- Compiling module PBP50_18_18_NT_DR
+-- Compiling UDP udp_mux2_sc9mcpp84_14lppxl_base_rvt_c14
+-- Compiling UDP udp_lat_rto_io_gppr_14lppxl_t18_mv10_mv18_fs18_rvt_dr
+-- Compiling UDP udp_dff_PWR_sc9mcpp84_14lppxl_base_rvt_c14
+
+Top level modules:
+	INV_X4N_A9PP84TR_C14
+	INV_X3N_A9PP84TR_C14
+	INV_X2N_A9PP84TR_C14
+	BUF_X4N_A9PP84TR_C14
+	BUF_X3N_A9PP84TR_C14
+	BUF_X2N_A9PP84TR_C14
+	BUF_X1N_A9PP84TR_C14
+	MX2_X1N_A9PP84TR_C14
+	OR2_X1N_A9PP84TR_C14
+	CCFFX1
+	SDFFRPQ_X1N_A9PP84TR_C14
+	ADDF_X1N_A9PP84TR_C14
+	GPIO_V
+	GPIO_H
+	PCORNER_18_18_NT_DR
+	PDVDDTIE_18_18_NT_DR_H
+	PDVDDTIE_18_18_NT_DR_V
+	PDVDD_18_18_NT_DR_H
+	PDVSS_18_18_NT_DR_H
+	PDVDD_18_18_NT_DR_V
+	PDVSS_18_18_NT_DR_V
+	PDCAP10_18_18_NT_DR_H
+	PDCAP10_18_18_NT_DR_V
+	PINCNP_18_18_NT_DR_H
+	PINCNP_18_18_NT_DR_V
+	PVDD_08_08_NT_DR_H
+	PVDD_08_08_NT_DR_V
+	PVSS_08_08_NT_DR_H
+	PVSS_08_08_NT_DR_V
+	PBP50_18_18_NT_DR
+
+} {} {}} /research/ece/lnis/Share/TMP_Samy/openfpga_tb/uvm_tb_2x2_fpga/clknrst_agent/clknrst_pkg.sv {2 {vlog -work openfpga -vopt -sv -stats=none /research/ece/lnis/Share/TMP_Samy/openfpga_tb/uvm_tb_2x2_fpga/clknrst_agent/clknrst_pkg.sv
+QuestaSim-64 vlog 2019.4 Compiler 2019.10 Oct 15 2019
+** Note: (vlog-2286) /research/ece/lnis/Share/TMP_Samy/openfpga_tb/uvm_tb_2x2_fpga/clknrst_agent/clknrst_pkg.sv(21): Using implicit +incdir+/uusoc/facility/cad_tools/Mentor/lnis_tools/modelsim/questasim/uvm-1.2/../verilog_src/uvm-1.2/src from import uvm_pkg
+-- Compiling interface clknrst_if
+-- Importing package mtiUvm.uvm_pkg (uvm-1.2 Built-in)
+-- Compiling package clknrst_pkg
+** Warning: ** while parsing file included at /research/ece/lnis/Share/TMP_Samy/openfpga_tb/uvm_tb_2x2_fpga/clknrst_agent/clknrst_pkg.sv(41)
+** at /research/ece/lnis/Share/TMP_Samy/openfpga_tb/uvm_tb_2x2_fpga/clknrst_agent/clknrst_sqr.sv(46): (vlog-2217) No default specified for 'parent'.  Default must match the value specified in class at /research/ece/lnis/Share/TMP_Samy/openfpga_tb/uvm_tb_2x2_fpga/clknrst_agent/clknrst_sqr.sv(38) for strict LRM compliance.
+** Warning: ** while parsing file included at /research/ece/lnis/Share/TMP_Samy/openfpga_tb/uvm_tb_2x2_fpga/clknrst_agent/clknrst_pkg.sv(42)
+** at /research/ece/lnis/Share/TMP_Samy/openfpga_tb/uvm_tb_2x2_fpga/clknrst_agent/seq_lib/clknrst_base_seq.sv(19): (vlog-2962) A non-IEEE 1800-2012-compliant identifier was used to define a macro: '"CLKNRST_BASE_SEQ"'.
+** Warning: ** while parsing file included at /research/ece/lnis/Share/TMP_Samy/openfpga_tb/uvm_tb_2x2_fpga/clknrst_agent/clknrst_pkg.sv(47)
+** at /research/ece/lnis/Share/TMP_Samy/openfpga_tb/uvm_tb_2x2_fpga/clknrst_agent/clknrst_monitor.sv(51): (vlog-2217) No default specified for 'parent'.  Default must match the value specified in class at /research/ece/lnis/Share/TMP_Samy/openfpga_tb/uvm_tb_2x2_fpga/clknrst_agent/clknrst_monitor.sv(37) for strict LRM compliance.
+** Warning: ** while parsing file included at /research/ece/lnis/Share/TMP_Samy/openfpga_tb/uvm_tb_2x2_fpga/clknrst_agent/clknrst_pkg.sv(48)
+** at /research/ece/lnis/Share/TMP_Samy/openfpga_tb/uvm_tb_2x2_fpga/clknrst_agent/clknrst_agent.sv(74): (vlog-2217) No default specified for 'parent'.  Default must match the value specified in class at /research/ece/lnis/Share/TMP_Samy/openfpga_tb/uvm_tb_2x2_fpga/clknrst_agent/clknrst_agent.sv(39) for strict LRM compliance.
+
+Top level modules:
+	--none--
+
+} {} {}} /research/ece/lnis/Share/TMP_Samy/openfpga_tb/uvm_tb_2x2_fpga/openfpga_tb/openfpga_tb.sv {1 {vlog -work openfpga -vopt -sv -stats=none /research/ece/lnis/Share/TMP_Samy/openfpga_tb/uvm_tb_2x2_fpga/openfpga_tb/openfpga_tb.sv
+QuestaSim-64 vlog 2019.4 Compiler 2019.10 Oct 15 2019
+** Note: (vlog-2286) /research/ece/lnis/Share/TMP_Samy/openfpga_tb/uvm_tb_2x2_fpga/openfpga_tb/openfpga_tb.sv(21): Using implicit +incdir+/uusoc/facility/cad_tools/Mentor/lnis_tools/modelsim/questasim/uvm-1.2/../verilog_src/uvm-1.2/src from import uvm_pkg
+-- Compiling module openfpga_tb
+-- Importing package mtiUvm.uvm_pkg (uvm-1.2 Built-in)
+-- Importing package openfpga_tb_pkg
+-- Importing package bs_pkg
+-- Importing package clknrst_pkg
+-- Importing package stimuli_pkg
+-- Importing package openfpga_env_pkg
+-- Importing package inv_pkg
+
+Top level modules:
+	openfpga_tb
+
+} {} {}}

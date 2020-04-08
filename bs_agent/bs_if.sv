@@ -26,6 +26,7 @@ interface bs_if(input clk_uvm, clk);
    logic       config_done; // deprecated
    logic [0:0] ccff_tail;
    wire  [0:7] gfpga_pad_GPIO;
+   logic [0:0] OUT; // For reference model only
    logic [0:7] gfpga_pad_GPIO_IN_drv = 8'h00; // Can't connect logic to INOUT
    assign gfpga_pad_GPIO[1:7] = gfpga_pad_GPIO_IN_drv[1:7];
    modport DRIVER (inout gfpga_pad_GPIO); 

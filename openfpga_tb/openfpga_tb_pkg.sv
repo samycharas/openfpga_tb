@@ -39,6 +39,7 @@ package openfpga_tb_pkg;
    import uvm_pkg::*;
    import bs_pkg::*;
    import clknrst_pkg::*;
+   import stimuli_pkg::*;
    import openfpga_env_pkg::*;
    
    // Constants / Structs / Enums
@@ -51,9 +52,9 @@ package openfpga_tb_pkg;
 //   `include "uvmt_cv32_vseq_lib.sv"
    
    // Test cases
-     `include "/research/ece/lnis/Share/TMP_Samy/uvm_tb_2x2_fpga/openfpga_test/test_cfg.sv"
-     `include "/research/ece/lnis/Share/TMP_Samy/uvm_tb_2x2_fpga/openfpga_test/openfpga_base_test.sv"
-     `include "/research/ece/lnis/Share/TMP_Samy/uvm_tb_2x2_fpga/openfpga_test/openfpga_standard_test.sv"
+     `include "/research/ece/lnis/Share/TMP_Samy/openfpga_tb/uvm_tb_2x2_fpga/openfpga_test/test_cfg.sv"
+     `include "/research/ece/lnis/Share/TMP_Samy/openfpga_tb/uvm_tb_2x2_fpga/openfpga_test/openfpga_base_test.sv"
+     `include "/research/ece/lnis/Share/TMP_Samy/openfpga_tb/uvm_tb_2x2_fpga/openfpga_test/openfpga_standard_test.sv"
 
 endpackage : openfpga_tb_pkg
 

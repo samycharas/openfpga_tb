@@ -23,8 +23,8 @@ class clknrst_monitor extends uvm_monitor;
    clknrst_cfg    m_clknrst_cfg;
    clknrst_cntxt  m_clknrst_cntxt;
 
-   uvm_analysis_port #(clknrst_seq_item) item_collected_port;
-   clknrst_seq_item trans_collected;
+//   uvm_analysis_port #(clknrst_seq_item) item_collected_port;
+//   clknrst_seq_item trans_collected;
    
    `uvm_component_utils_begin(clknrst_monitor)
       `uvm_field_object(m_clknrst_cfg  , UVM_DEFAULT)
@@ -51,8 +51,8 @@ endclass : clknrst_monitor
 function clknrst_monitor::new(string name="clknrst_monitor",uvm_component parent);
    
 	super.new(name,parent);
-	trans_collected =new();
-   	item_collected_port =new("item_collected_port",this);
+//	trans_collected =new();
+//   	item_collected_port =new("item_collected_port",this);
        
 endfunction 
 
@@ -73,11 +73,11 @@ endfunction: build_phase
 
 task clknrst_monitor::run_phase(uvm_phase phase);
 
-	forever begin
-	@(posedge m_clknrst_cntxt.vif.clk);
-	   trans_collected.OUT = m_clknrst_cntxt.vif.OUT;
-	   item_collected_port.write(trans_collected);
-	end
+//	forever begin
+//	@(posedge m_clknrst_cntxt.vif.clk);
+//	   trans_collected.OUT = m_clknrst_cntxt.vif.OUT;
+//	   item_collected_port.write(trans_collected);
+//	end
 
 endtask: run_phase
       

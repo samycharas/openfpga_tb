@@ -3,7 +3,7 @@
 
 class openfpga_base_test extends uvm_test;
 
-  rand test_cfg		m_test_cfg 		;
+  rand test_cfg			m_test_cfg 			;
   rand openfpga_env_cfg		m_openfpga_env_cfg  		;
   openfpga_env_cntxt		m_openfpga_env_cntxt		;
 
@@ -12,6 +12,7 @@ class openfpga_base_test extends uvm_test;
   reset_after_bs 	m_reset_after_bs	;
   bitstream   		m_bitstream		;
   stimuli     		m_stimuli		;
+  stimuli_standard_seq  m_stimuli_standard_seq  ;
 
  
    `uvm_component_utils_begin(openfpga_base_test)
@@ -67,11 +68,12 @@ function void openfpga_base_test::build_phase(uvm_phase phase);
       uvm_config_db#(openfpga_env_cfg)  ::set(this, "openfpga_env", "cfg"  , m_openfpga_env_cfg);
       uvm_config_db#(openfpga_env_cntxt)::set(this, "openfpga_env", "cntxt", m_openfpga_env_cntxt);
 
-      m_openfpga_env			=openfpga_env::type_id::create("openfpga_env",this);
+      m_openfpga_env		=openfpga_env::type_id::create("openfpga_env",this);
       m_reset_at_start		=reset_at_start::type_id::create("Reset at start");
       m_reset_after_bs		=reset_after_bs::type_id::create("Reset after bitstream is loaded");
       m_bitstream		=bitstream::type_id::create("Bitstream sequence");
       m_stimuli			=stimuli::type_id::create("stimuli");
+      m_stimuli_standard_seq    =stimuli_standard_seq::type_id::create("stimuli");
 
 endfunction:build_phase
 
@@ -79,7 +81,7 @@ function void openfpga_base_test::phase_ended(uvm_phase phase);
 
    super.phase_ended(phase);
    
-   if (phase.is(uvm_final_phase::get())) begin
+   if (phase.is(uvm_final_phase::get())) begin // change phase to the one after run_phase
      // Set sim_finished (otherwise tb will flag that sim was aborted)
      uvm_config_db#(bit)::set(null, "", "sim_finished", 1);
    end

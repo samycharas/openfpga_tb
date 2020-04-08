@@ -33,14 +33,18 @@ class openfpga_env_cfg extends uvm_object;
    rand bit                      cov_model_enabled;
    rand bit                      trn_log_enabled;
    rand int unsigned             sys_clk_period;
+   rand which_bitstream		 m_which_bitstream = INV;
+   
    
    // Agent cfg handles
    rand clknrst_cfg  m_clknrst_cfg;
    rand bs_cfg	     m_bs_cfg;
+   rand stimuli_cfg  m_stimuli_cfg;
    
    // Agent cntxt handles
    rand clknrst_cntxt m_clknrst_cntxt;
    rand bs_cntxt      m_bs_cntxt;
+   rand stimuli_cntxt m_stimuli_cntxt;
 
    rand openfpga_ral  m_openfpga_ral;
    
@@ -53,13 +57,15 @@ class openfpga_env_cfg extends uvm_object;
    `uvm_object_utils_begin(openfpga_env_cfg)
       `uvm_field_int (                         enabled                     , UVM_DEFAULT          )
       `uvm_field_enum(uvm_active_passive_enum, is_active                   , UVM_DEFAULT          )
+      `uvm_field_enum(which_bitstream	     , m_which_bitstream           , UVM_DEFAULT          )
       `uvm_field_int (                         scoreboarding_enabled       , UVM_DEFAULT          )
       `uvm_field_int (                         cov_model_enabled           , UVM_DEFAULT          )
       `uvm_field_int (                         trn_log_enabled             , UVM_DEFAULT          )
       `uvm_field_int (                         sys_clk_period            , UVM_DEFAULT + UVM_DEC)
       
-      `uvm_field_object(m_clknrst_cfg, UVM_DEFAULT)
-      `uvm_field_object(m_bs_cfg  , UVM_DEFAULT)
+      `uvm_field_object(m_clknrst_cfg	, UVM_DEFAULT)
+      `uvm_field_object(m_bs_cfg  	, UVM_DEFAULT)
+      `uvm_field_object(m_stimuli_cfg   , UVM_DEFAULT)
       
    `uvm_object_utils_end
    
@@ -76,16 +82,19 @@ class openfpga_env_cfg extends uvm_object;
       if (enabled) {
          m_clknrst_cfg.enabled == 1;
          m_bs_cfg.enabled      == 1;
+         m_stimuli_cfg.enabled == 1;
       }
       
       if (is_active == UVM_ACTIVE) {
          m_clknrst_cfg.is_active == UVM_ACTIVE;
          m_bs_cfg.is_active 	 == UVM_ACTIVE;
+         m_stimuli_cfg.is_active == UVM_ACTIVE;
       }
       
       if (trn_log_enabled) {
          m_clknrst_cfg.trn_log_enabled == 1;
          m_bs_cfg.trn_log_enabled      == 1;
+         m_stimuli_cfg.trn_log_enabled == 1;
       }
    }
    
@@ -94,7 +103,10 @@ class openfpga_env_cfg extends uvm_object;
     * Creates sub-configuration objects.
     */
    extern function new(string name="openfpga_env_cfg");
-   
+   /**
+    * Adapt reference model to bitstream
+    */
+   //extern function which_bitstream();
 endclass : openfpga_env_cfg
 
 
@@ -106,6 +118,8 @@ function openfpga_env_cfg::new(string name="openfpga_env_cfg");
    m_clknrst_cntxt = clknrst_cntxt::type_id::create("clknrst_cntxt");
    m_bs_cfg        = bs_cfg::type_id::create("clknrst_cfg");
    m_bs_cntxt      = bs_cntxt::type_id::create("clknrst_cntxt");
+   m_stimuli_cfg   = stimuli_cfg::type_id::create("stimuli_cfg");
+   m_stimuli_cntxt = stimuli_cntxt::type_id::create("stimuli_cntxt");
 
    m_openfpga_ral = openfpga_ral::type_id::create("ral");
    m_openfpga_ral.build();
@@ -114,6 +128,10 @@ function openfpga_env_cfg::new(string name="openfpga_env_cfg");
 
 
 endfunction : new
+
+//function openfpga_env_cfg::which_bitstream();
+	
+
 
 
 `endif // OPENFPGA_ENV_CFG

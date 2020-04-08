@@ -25,7 +25,7 @@ class bs_agent extends uvm_agent;
    bs_cntxt     m_bs_cntxt;
   
    bs_driver 	m_bs_driver;
-   bs_sqr  m_bs_sqr;
+   bs_sqr  	m_bs_sqr;
    bs_monitor	m_bs_monitor;
     
    `uvm_component_utils_begin(bs_agent)
@@ -92,7 +92,6 @@ function void bs_agent::connect_phase(uvm_phase phase);
 	if(m_bs_cfg.is_active ==UVM_ACTIVE) begin
 	   m_bs_driver.seq_item_port.connect(m_bs_sqr.seq_item_export);
 	end
-      
 endfunction:connect_phase
 
 function void bs_agent::get_and_set_cfg();

@@ -20,6 +20,7 @@
 
 // Pre-processor macros
 `include "uvm_macros.svh"
+//`include "inv.v"
 // Not including empty file for now
 //`include "clknrst_macros.sv"
 //`include "openfpga_env_macros.sv"
@@ -34,6 +35,9 @@ package openfpga_env_pkg;
    import uvm_pkg         ::*;
    import clknrst_pkg::*;
    import bs_pkg::*;
+   import stimuli_pkg::*;
+   import inv_pkg::*;
+//   import inv_pkg::*;
    
    // Constants / Structs / Enums
    `include "openfpga_env_constants.sv"
@@ -41,11 +45,13 @@ package openfpga_env_pkg;
    
    // Register Abstraction Layer
    `include "ral/openfpga_ral.sv"
-   
+
    // Objects
    `include "openfpga_env_cfg.sv"
    `include "openfpga_env_cntxt.sv"
-   
+
+   // Reference model   
+   `include "reference_model.sv"   
    // Predictor
 //   `include "uvme_cv32_prd.sv"
    

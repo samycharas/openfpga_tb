@@ -24,7 +24,7 @@ interface clknrst_if ();
 
    import uvm_pkg::*;
    // signals
-   logic [0:0] clk  		; // DUT_clk
+   logic [0:0] clk  = 0		; // DUT_clk, set to 0 as a workaround for scoreboarding unphazed packet // check if it really matters
    logic [0:0] bs_clock_reg	; // Programming clock
    logic [0:0] clk_uvm		; // Driver Clock
    logic [0:0] pReset		;
@@ -85,7 +85,6 @@ always begin
       `uvm_info("CLKNRST", $sformatf("Changing clock period to %0t", new_clknrst_period), UVM_LOW)
       clknrst_period = new_clknrst_period;
    endfunction : set_period
-
    /**
     * Sets clknrst_period
     */
@@ -93,7 +92,10 @@ always begin
       `uvm_info("CLKNRST", $sformatf("Changing clock period to %0t", new_clknrst_period), UVM_LOW)
       clknrst_bs_period = new_clknrst_period;
    endfunction : set_period_bs
-   
+  function void test();
+      `uvm_info("CLKNRST", $sformatf("Changing clock period to %0t", 5), UVM_LOW)
+      clknrst_bs_period = 5;
+  endfunction : test 
    /**
     * Sets clknrst_active to 1
     */

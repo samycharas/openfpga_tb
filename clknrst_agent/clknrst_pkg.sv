@@ -35,7 +35,7 @@ package clknrst_pkg;
   `include "clknrst_cntxt.sv"
 
 
-  `include "clknrst_cov.sv"
+//  `include "clknrst_cov.sv"
 
   `include "clknrst_seq_item.sv"
   `include "clknrst_sqr.sv"

@@ -27,18 +27,23 @@ class openfpga_env extends uvm_env;
    // Objects
    openfpga_env_cfg    	m_openfpga_env_cfg;
    openfpga_env_cntxt  	m_openfpga_env_cntxt;
-  
+
    // RAL
    openfpga_ral		m_openfpga_ral; 
+
    // Components
  //  uvme_cv32_cov_model_c  cov_model;
- //  uvme_cv32_prd_c        predictor;
+     reference_model	m_reference_model;
      my_scoreboard      m_my_scoreboard;
  //  uvme_cv32_vsqr_c       vsequencer;
    
    // Agents
    clknrst_agent  	m_clknrst_agent;
    bs_agent		m_bs_agent;
+   stimuli_agent	m_stimuli_agent;
+
+   // Analysis port
+//   uvm_analysis_port #(bs_seq_item) to_refmod;
   
    `uvm_component_utils_begin(openfpga_env)
       `uvm_field_object(m_openfpga_env_cfg  , UVM_DEFAULT)
@@ -81,6 +86,10 @@ class openfpga_env extends uvm_env;
     * Creates agent components.
     */
    extern virtual function void create_agents();
+   /**
+    * Creates reference model.
+    */
+   extern virtual function void create_reference_model();
    
    /**
     * Creates ral_adapter which translates to/from ral to debug_agent.
@@ -133,7 +142,7 @@ endclass : openfpga_env
 function openfpga_env::new(string name="openfpga_env", uvm_component parent=null);
    
    super.new(name, parent);
-   
+
 endfunction : new
 
 
@@ -156,12 +165,13 @@ function void openfpga_env::build_phase(uvm_phase phase);
          m_openfpga_env_cntxt = openfpga_env_cntxt::type_id::create("cntxt");
       end
       
-      assign_cfg           ();
-      assign_cntxt         ();
-      create_agents        ();
-      create_ral_adapter   ();
-      create_openfpga_env_components();
-      
+      assign_cfg           		();
+      assign_cntxt         		();
+      create_agents        		();
+      create_reference_model		();
+      create_ral_adapter   		();
+      create_openfpga_env_components	();
+      to_refmod = new("to_refmod",this);     // deserves his own function later on
       if (m_openfpga_env_cfg.is_active) begin
          create_vsequencer();
       end
@@ -180,7 +190,7 @@ function void openfpga_env::connect_phase(uvm_phase phase);
    
    if (m_openfpga_env_cfg.enabled) begin
       if (m_openfpga_env_cfg.scoreboarding_enabled) begin
- //        connect_predictor ();
+         connect_predictor ();
          connect_scoreboard();
       end
       
@@ -202,7 +212,7 @@ function void openfpga_env::assign_cfg();
    uvm_config_db#(openfpga_env_cfg)	::set(this, "*", "cfg",			m_openfpga_env_cfg);
    uvm_config_db#(clknrst_cfg)		::set(this, "*clknrst_agent", "cfg",	m_openfpga_env_cfg.m_clknrst_cfg);
    uvm_config_db#(bs_cfg)		::set(this, "*bs_agent", "cfg",		m_openfpga_env_cfg.m_bs_cfg);
-
+   uvm_config_db#(stimuli_cfg)		::set(this, "*stimuli_agent", "cfg",	m_openfpga_env_cfg.m_stimuli_cfg);
    
 endfunction: assign_cfg
 
@@ -212,6 +222,7 @@ function void openfpga_env::assign_cntxt();
    uvm_config_db#(openfpga_env_cntxt)	::set(this, "*", "cntxt"   ,		m_openfpga_env_cntxt);
    uvm_config_db#(clknrst_cntxt)	::set(this, "clknrst_agent", "cntxt", 	m_openfpga_env_cntxt.m_clknrst_cntxt);
    uvm_config_db#(bs_cntxt)		::set(this, "bs_agent", "cntxt", 	m_openfpga_env_cntxt.m_bs_cntxt);
+   uvm_config_db#(stimuli_cntxt)	::set(this, "stimuli_agent", "cntxt", 	m_openfpga_env_cntxt.m_stimuli_cntxt);
    
 endfunction: assign_cntxt
 
@@ -219,16 +230,22 @@ endfunction: assign_cntxt
 function void openfpga_env::create_agents();
    
    m_clknrst_agent = clknrst_agent::type_id::create("clknrst_agent",	this);
+   m_stimuli_agent = stimuli_agent::type_id::create("stimuli_agent",	this);
    m_bs_agent      = bs_agent	  ::type_id::create("bs_agent",		this);
       
 endfunction: create_agents
 
+function void openfpga_env::create_reference_model();
+   
+   m_reference_model = reference_model::type_id::create("reference_model",this);
+      
+endfunction: create_reference_model
 
 function void openfpga_env::create_openfpga_env_components();
    
    if (m_openfpga_env_cfg.scoreboarding_enabled) begin
 //      predictor = uvme_cv32_prd_c::type_id::create("predictor", this);
-      m_my_scoreboard        = my_scoreboard ::type_id::create("scoreboard"       , this);
+      m_my_scoreboard        = my_scoreboard ::type_id::create("scoreboard", this);
    end
    
 endfunction: create_openfpga_env_components
@@ -257,21 +274,17 @@ endfunction: create_cov_model
 
 
 function void openfpga_env::connect_predictor();
-   
-   //debug_agent.mon_ap.connect(predictor.debug_export);
-   //clknrst_agent.mon_ap.connect(predictor.clknrst_export);
-   // TODO Connect agents monitor analysis ports to predictor
+   	// Connecting driver to predictor
+	m_stimuli_agent.ap.connect(m_reference_model.port);
    
 endfunction: connect_predictor
 
 
+
 function void openfpga_env::connect_scoreboard();
    
-      m_clknrst_agent.m_clknrst_monitor.item_collected_port.connect(m_my_scoreboard.item_collected_export);
-      m_bs_agent.m_bs_monitor.bs_collected_port.connect(m_my_scoreboard.bs_collected_export);
-  
-   // TODO Connect predictor -> scoreboard
-   //      Ex: predictor.debug_ap.connect(sb.debug_sb.exp_export);
+      m_stimuli_agent.m_stimuli_monitor.stimuli_collected_port.connect(m_my_scoreboard.dut_collected_export);
+      m_reference_model.ap.connect(m_my_scoreboard.ref_collected_export)				    ;
    
 endfunction: connect_scoreboard
 

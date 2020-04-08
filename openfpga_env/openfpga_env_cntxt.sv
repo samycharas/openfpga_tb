@@ -27,6 +27,7 @@ class openfpga_env_cntxt extends uvm_object;
    // Agent context handles
    clknrst_cntxt  m_clknrst_cntxt;
    bs_cntxt	  m_bs_cntxt;
+   stimuli_cntxt  m_stimuli_cntxt;
    
    // TODO Add scoreboard context handles
    //      Ex: uvme_cv32_sb_cntxt_c  sb_egress_cntxt;
@@ -38,7 +39,9 @@ class openfpga_env_cntxt extends uvm_object;
    
    
    `uvm_object_utils_begin(openfpga_env_cntxt)
-      `uvm_field_object(m_clknrst_cntxt, UVM_DEFAULT)
+      `uvm_field_object(m_clknrst_cntxt ,UVM_DEFAULT)
+      `uvm_field_object(m_bs_cntxt	,UVM_DEFAULT)
+      `uvm_field_object(m_stimuli_cntxt ,UVM_DEFAULT)
       
       // TODO Add scoreboard context field macros
       //      Ex: `uvm_field_object(sb_egress_cntxt , UVM_DEFAULT)
@@ -63,7 +66,7 @@ function openfpga_env_cntxt::new(string name="uvme_cv32_cntxt");
    
    m_clknrst_cntxt = clknrst_cntxt::type_id::create("clknrst_cntxt");
    m_bs_cntxt	   = bs_cntxt     ::type_id::create("bs_cntxt");
-   
+   m_stimuli_cntxt = stimuli_cntxt::type_id::create("stimuli_cntxt");
    // TODO Create uvme_cv32_cntxt_c scoreboard context objects
    //      Ex: sb_egress_cntxt  = uvma_cv32_sb_cntxt_c::type_id::create("sb_egress_cntxt" );
    //          sb_ingress_cntxt = uvma_cv32_sb_cntxt_c::type_id::create("sb_ingress_cntxt");

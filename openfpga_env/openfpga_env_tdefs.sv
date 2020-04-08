@@ -17,7 +17,10 @@
 `ifndef ENV_TDEFS
 `define ENV_TDEFS
 
-
+typedef enum {
+   INV  ,
+   NOT_INV   
+} which_bitstream;
 
 
 `endif // ENV_TDEFS

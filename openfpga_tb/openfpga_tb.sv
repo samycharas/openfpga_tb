@@ -46,9 +46,9 @@ module openfpga_tb;
 
   // Reference model
 
-   inv REF_DUT(
-		.IN(m_bs_if.gfpga_pad_GPIO[7]),
-		.OUT(m_clknrst_if.OUT));
+//   inv REF_DUT(
+//		.IN(m_bs_if.gfpga_pad_GPIO[7]),
+//		.OUT(m_clknrst_if.OUT));
 
 
  
@@ -63,6 +63,7 @@ module openfpga_tb;
      // Add interfaces handles to uvm_config_db
      uvm_config_db#(virtual clknrst_if        )::set(.cntxt(null), .inst_name("*.openfpga_env.clknrst_agent"), .field_name("vif"),         .value(m_clknrst_if));
      uvm_config_db#(virtual bs_if             )::set(.cntxt(null), .inst_name("*.openfpga_env.bs_agent")     , .field_name("vif"),         .value(m_bs_if));
+     uvm_config_db#(virtual bs_if             )::set(.cntxt(null), .inst_name("*.openfpga_env.stimuli_agent"), .field_name("vif"),         .value(m_bs_if));
 
      // Run the test
      uvm_top.enable_print_topology = 1;
