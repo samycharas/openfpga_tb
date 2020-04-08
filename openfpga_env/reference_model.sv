@@ -4,18 +4,14 @@
 `ifndef REFERENCE_MODEL
 `define REFERENCE_MODEL
 
-//`include "inv.v"
-
 class reference_model extends uvm_component;
 
    // Objects
    openfpga_env_cfg    	m_openfpga_env_cfg;
    openfpga_env_cntxt  	m_openfpga_env_cntxt;
 
-//   uvm_analysis_imp	#(bs_seq_item,reference_model) port;
-//   uvm_analysis_port	#(bs_seq_item) ap;
-int i = 0;
-//   bs_seq_item       	pkt_qu[$];
+int i = 0; // Debug
+
    uvm_analysis_imp	#(stimuli_seq_item,reference_model) port;
    uvm_analysis_port	#(stimuli_seq_item) ap;
 
@@ -31,19 +27,19 @@ int i = 0;
     */
    extern function new(string name="reference_model", uvm_component parent=null);
    /**
-    * Builds ap.
+    * Builds ports and cfg/cntxt objects
     */
    extern virtual function void build_phase(uvm_phase phase);
    /**
-    * Connect both reference model ports to transactions
+    * TODO : Implement TLM
     */
    extern virtual function void connect_phase(uvm_phase phase);
   /**
-    * Receive monitor Pkt
+    * Receive driver Pkt
     */
    extern virtual function void write(stimuli_seq_item trans_collected);
    /**
-    * Obtains the reqs from the sequence item port and calls drv_req()
+    * Pass the transaction item to the reference model
     */
    extern virtual task run_phase(uvm_phase phase);
 
